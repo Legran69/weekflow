@@ -1,0 +1,139 @@
+<div class="w-full max-w-4xl mx-auto bg-white text-slate-900 rounded-3xl p-6 sm:p-8">
+  <nav class="flex items-center justify-between pb-5 mb-7">
+    <div class="flex items-center gap-1 rounded-2xl bg-slate-100 p-1">
+      <button id="navStats" type="button" class="rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm">Overview</button>
+      <button id="navTasks" type="button" class="rounded-xl px-4 py-2 text-sm font-medium text-slate-500">Tasks</button>
+    </div>
+    <div class="text-xs tracking-widest text-slate-300">WEEKFLOW</div>
+  </nav>
+
+  <div id="tasksPage" class="hidden">
+  <header class="flex items-center justify-between gap-4">
+    <div>
+      <div id="dateLabel" class="text-sm text-slate-400">Friday, August 14</div>
+      <h1 class="text-3xl font-semibold tracking-tight mt-1">What’s up next?</h1>
+      <p class="text-sm text-slate-500 mt-1">A simple view of your week.</p>
+    </div>
+    <button id="clearDone" type="button" class="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-500 hover:bg-slate-50">Clear done</button>
+  </header>
+
+  <section>
+    <div class="flex items-center justify-between mb-3"><h2 class="font-medium">Tasks</h2><span id="taskCount" class="text-sm text-slate-400"></span></div>
+    <div id="tasks" class="divide-y divide-slate-100 rounded-2xl border border-slate-100 bg-white px-4"></div>
+    <div class="mt-3 flex flex-col sm:flex-row gap-2">
+      <label class="sr-only" for="taskInput">Add task</label>
+      <input id="taskInput" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-base bg-white" placeholder="Add a task…" />
+      <label class="sr-only" for="taskDate">Task date</label>
+      <input id="taskDate" type="date" class="rounded-xl border border-slate-200 px-3 py-2 text-base bg-white" />
+      <button id="addTask" type="button" class="rounded-xl bg-slate-900 text-white px-4 py-2 font-medium">Add</button>
+    </div>
+  </section>
+  </div>
+
+  <div id="statsPage" class="space-y-8">
+    <header class="flex items-end justify-between gap-4">
+      <div><div class="text-sm text-slate-400">Your productivity</div><h1 class="text-3xl font-semibold tracking-tight mt-1">Overview</h1><p class="text-sm text-slate-500 mt-1">A complete picture of your work.</p></div>
+      <div id="ovMonthLabel" class="text-sm text-slate-400"></div>
+    </header>
+
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">Today</div><div id="ovToday" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">tasks</div></div>
+      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">This week</div><div id="ovWeek" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">tasks</div></div>
+      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">All time</div><div id="ovAll" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">tasks</div></div>
+      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">Streak</div><div id="ovStreak" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">days</div></div>
+    </section>
+
+    <section class="rounded-3xl border border-slate-100 bg-slate-50 p-5 sm:p-7">
+      <div class="flex items-center justify-between mb-5"><div><h2 class="font-medium">Activity</h2><p class="text-sm text-slate-400 mt-1">Tasks completed each day</p></div><div class="flex items-center gap-1"><button id="ovPrev" type="button" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">←</button><button id="ovNow" type="button" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">Today</button><button id="ovNext" type="button" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">→</button></div></div>
+      <div id="monthCalendar" class="grid grid-cols-7 gap-1.5"></div>
+      <div class="mt-4 flex items-center justify-end gap-2 text-xs text-slate-400"><span>Less</span><i class="w-3 h-3 rounded-sm bg-slate-100"></i><i class="w-3 h-3 rounded-sm bg-slate-300"></i><i class="w-3 h-3 rounded-sm bg-slate-500"></i><i class="w-3 h-3 rounded-sm bg-slate-900"></i><span>More</span></div>
+    </section>
+
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-100 pt-5">
+      <div><div class="text-xs uppercase tracking-wide text-slate-400">Completed</div><div id="ovCompleted" class="text-xl font-semibold mt-1">0</div></div>
+      <div><div class="text-xs uppercase tracking-wide text-slate-400">Remaining</div><div id="ovRemaining" class="text-xl font-semibold mt-1">0</div></div>
+      <div><div class="text-xs uppercase tracking-wide text-slate-400">Best day</div><div id="ovBest" class="text-xl font-semibold mt-1">—</div></div>
+      <div><div class="text-xs uppercase tracking-wide text-slate-400">Average</div><div id="ovAvg" class="text-xl font-semibold mt-1">0</div></div>
+    </section>
+  </div>
+</div>
+
+<script>
+const now=new Date();
+const key=d=>d.toISOString().slice(0,10);
+const monday=d=>{let x=new Date(d);x.setHours(0,0,0,0);let n=x.getDay()||7;x.setDate(x.getDate()-n+1);return x};
+let viewWeek=monday(now);
+const savedTasks=[
+ {id:1,text:'Finish landing page',done:true,date:key(now)},
+ {id:2,text:'Review pull requests',done:true,date:key(now)},
+ {id:3,text:'30 min deep work',done:false,date:key(now)},
+ {id:4,text:'Plan next week',done:false,date:key(now)}
+];
+let tasks=savedTasks;
+try{const raw=localStorage.getItem('weekflow_tasks');if(raw)tasks=JSON.parse(raw)}catch(e){}
+let id=Math.max(20,...tasks.map(t=>t.id+1));
+function save(){try{localStorage.setItem('weekflow_tasks',JSON.stringify(tasks))}catch(e){}}
+function weekEnd(){let d=new Date(viewWeek);d.setDate(d.getDate()+7);return d}
+function inWeek(t){let d=new Date(t.date);return d>=viewWeek&&d<weekEnd()}
+function doneWeek(){return tasks.filter(t=>t.done&&inWeek(t)).length}
+function streak(){let s=0,d=new Date(now);d.setHours(0,0,0,0);while(tasks.some(t=>t.done&&t.date===key(d))){s++;d.setDate(d.getDate()-1)}return s}
+function render(){
+ document.getElementById('dateLabel').textContent=viewWeek.toLocaleDateString('en',{month:'long',day:'numeric'})+' — '+new Date(viewWeek.getTime()+6*86400000).toLocaleDateString('en',{month:'long',day:'numeric'});
+ document.getElementById('taskCount').textContent=tasks.filter(t=>t.done&&t.date===key(now)).length+' completed today';
+ const te=document.getElementById('tasks');te.innerHTML='';
+ tasks.forEach(t=>{
+  let row=document.createElement('div');row.className='flex items-center gap-3 py-3';
+  row.innerHTML='<span class="form-check"><input class="form-check-input" type="checkbox" '+(t.done?'checked':'')+'></span><button type="button" class="task-edit flex-1 text-left '+(t.done?'line-through text-slate-400':'')+'">'+t.text+'</button><span class="text-sm text-slate-400">'+(t.date===key(now)?'today':t.date)+'</span><button type="button" class="task-delete text-sm text-slate-400 hover:text-slate-700" aria-label="Delete">×</button>';
+  row.querySelector('input').addEventListener('change',e=>{t.done=e.target.checked;if(t.done)t.date=key(now);save();render()});
+  row.querySelector('.task-edit').addEventListener('click',()=>{let v=prompt('Edit task',t.text);if(v!==null&&v.trim()){t.text=v.trim();save();render()}});
+  row.querySelector('.task-delete').addEventListener('click',()=>{tasks=tasks.filter(x=>x.id!==t.id);save();render()});
+  te.appendChild(row);
+ });
+ renderOverview();
+}
+function renderOverview(){
+ const wd=tasks.filter(inWeek).filter(t=>t.done).length;
+ document.getElementById('ovToday').textContent=tasks.filter(t=>t.done&&t.date===key(now)).length;
+ document.getElementById('ovWeek').textContent=wd;
+ document.getElementById('ovAll').textContent=tasks.filter(t=>t.done).length;
+ document.getElementById('ovStreak').textContent=streak();
+ document.getElementById('ovCompleted').textContent=wd;
+ document.getElementById('ovRemaining').textContent=Math.max(0,tasks.filter(inWeek).length-wd);
+ const month=new Date(viewWeek.getFullYear(),viewWeek.getMonth(),1), first=new Date(month);
+ first.setDate(1-((month.getDay()||7)-1));
+ document.getElementById('ovMonthLabel').textContent=month.toLocaleDateString('en',{month:'long',year:'numeric'});
+ const cal=document.getElementById('monthCalendar');cal.innerHTML='';
+ ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(x=>{let h=document.createElement('div');h.className='text-center text-xs text-slate-400 py-1';h.textContent=x;cal.appendChild(h)});
+ let best={count:0,date:null};
+ for(let i=0;i<42;i++){
+  let d=new Date(first);d.setDate(first.getDate()+i);
+  let c=tasks.filter(t=>t.done&&t.date===key(d)).length;
+  if(c>best.count)best={count:c,date:d};
+  let cell=document.createElement('div');
+  let outside=d.getMonth()!==month.getMonth();
+  let level=c===0?'bg-slate-100':c===1?'bg-slate-300':c===2?'bg-slate-500':'bg-slate-900';
+  cell.className='aspect-square rounded-md flex flex-col items-center justify-center '+(outside?'opacity-30 ':'')+level+' '+(c?'text-white':'text-slate-400');
+  cell.innerHTML='<span class="text-[11px]">'+d.getDate()+'</span>'+(c?'<span class="text-[9px] mt-0.5">'+c+'</span>':'');
+  cal.appendChild(cell)
+ }
+ document.getElementById('ovBest').textContent=best.date?best.date.toLocaleDateString('en',{weekday:'short'}):'—';
+ document.getElementById('ovAvg').textContent=(wd/7).toFixed(1);
+}
+function addTask(){
+ let x=document.getElementById('taskInput'),v=x.value.trim(),date=document.getElementById('taskDate').value||key(now);
+ if(!v)return;
+ tasks.push({id:id++,text:v,done:false,date});
+ x.value='';document.getElementById('taskDate').value=key(now);save();render()
+}
+document.getElementById('addTask').addEventListener('click',addTask);
+document.getElementById('taskInput').addEventListener('keydown',e=>{if(e.key==='Enter')addTask()});
+document.getElementById('clearDone').addEventListener('click',()=>{tasks=tasks.filter(t=>!t.done);save();render()});
+document.getElementById('navTasks').addEventListener('click',()=>{document.getElementById('tasksPage').classList.remove('hidden');document.getElementById('statsPage').classList.add('hidden');document.getElementById('navTasks').className='rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm';document.getElementById('navStats').className='rounded-xl px-4 py-2 text-sm font-medium text-slate-500'});
+document.getElementById('navStats').addEventListener('click',()=>{document.getElementById('tasksPage').classList.add('hidden');document.getElementById('statsPage').classList.remove('hidden');document.getElementById('navStats').className='rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm';document.getElementById('navTasks').className='rounded-xl px-4 py-2 text-sm font-medium text-slate-500'});
+document.getElementById('ovPrev').addEventListener('click',()=>{viewWeek=new Date(viewWeek);viewWeek.setMonth(viewWeek.getMonth()-1);render()});
+document.getElementById('ovNext').addEventListener('click',()=>{viewWeek=new Date(viewWeek);viewWeek.setMonth(viewWeek.getMonth()+1);render()});
+document.getElementById('ovNow').addEventListener('click',()=>{viewWeek=monday(now);render()});
+document.getElementById('taskDate').value=key(now);
+document.getElementById('navStats').click();
+render();
+</script>
