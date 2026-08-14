@@ -28,6 +28,19 @@ button:focus,input:focus{outline:2px solid #cbd5e1;outline-offset:1px}
 <link rel="manifest" href="./manifest.json">
 
 <div class="w-full max-w-4xl mx-auto bg-white text-slate-900 rounded-3xl p-6 sm:p-8">
+  <section class="mb-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+    <div id="authSignedOut" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+      <input id="authEmail" type="email" autocomplete="email" placeholder="Email" class="flex-1 rounded-xl border border-slate-200 px-3 py-2 bg-white text-sm">
+      <input id="authPassword" type="password" autocomplete="current-password" placeholder="Password" class="flex-1 rounded-xl border border-slate-200 px-3 py-2 bg-white text-sm">
+      <button id="signIn" type="button" class="rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-medium">Sign in</button>
+      <button id="signUp" type="button" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium">Create account</button>
+    </div>
+    <div id="authSignedIn" class="hidden items-center justify-between gap-3">
+      <div><div class="text-sm font-medium">Synced</div><div id="authUser" class="text-xs text-slate-400 mt-0.5"></div></div>
+      <button id="signOut" type="button" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm">Sign out</button>
+    </div>
+    <div id="authMessage" class="text-xs text-slate-400 mt-2"></div>
+  </section>
   <nav class="flex items-center justify-between pb-5 mb-7">
     <div class="flex items-center gap-1 rounded-2xl bg-slate-100 p-1">
       <button id="navStats" type="button" class="rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm">Overview</button>
@@ -113,9 +126,9 @@ function render(){
  tasks.forEach(t=>{
   let row=document.createElement('div');row.className='flex items-center gap-3 py-3';
   row.innerHTML='<span class="form-check"><input class="form-check-input" type="checkbox" '+(t.done?'checked':'')+'></span><button type="button" class="task-edit flex-1 text-left '+(t.done?'line-through text-slate-400':'')+'">'+t.text+'</button><span class="text-sm text-slate-400">'+(t.date===key(now)?'today':t.date)+'</span><button type="button" class="task-delete text-sm text-slate-400 hover:text-slate-700" aria-label="Delete">×</button>';
-  row.querySelector('input').addEventListener('change',e=>{t.done=e.target.checked;if(t.done)t.date=key(now);save();render()});
-  row.querySelector('.task-edit').addEventListener('click',()=>{let v=prompt('Edit task',t.text);if(v!==null&&v.trim()){t.text=v.trim();save();render()}});
-  row.querySelector('.task-delete').addEventListener('click',()=>{tasks=tasks.filter(x=>x.id!==t.id);save();render()});
+  row.querySelector('input').addEventListener('change',e=>{t.done=e.target.checked;if(t.done)t.date=key(now);save();if(currentUser)await cloudUpdate(t);render()});
+  row.querySelector('.task-edit').addEventListener('click',()=>{let v=prompt('Edit task',t.text);if(v!==null&&v.trim()){t.text=v.trim();save();if(currentUser)await cloudUpdate(t);render()}});
+  row.querySelector('.task-delete').addEventListener('click',()=>{tasks=tasks.filter(x=>x.id!==t.id);save();if(currentUser)await cloudDelete(t);render()});
   te.appendChild(row);
  });
  renderOverview();
