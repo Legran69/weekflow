@@ -1,181 +1,179 @@
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f8fafc;color:#0f172a}
-body{padding:32px 16px}
-button,input{font:inherit}button{cursor:pointer}
-button:focus,input:focus{outline:2px solid #cbd5e1;outline-offset:1px}
-.w-full{width:100%}.max-w-4xl{max-width:896px}.mx-auto{margin-left:auto;margin-right:auto}
-.bg-white{background:#fff}.text-slate-900{color:#0f172a}.text-slate-500{color:#64748b}.text-slate-400{color:#94a3b8}.text-slate-300{color:#cbd5e1}
-.bg-slate-50{background:#f8fafc}.bg-slate-100{background:#f1f5f9}.bg-slate-300{background:#cbd5e1}.bg-slate-500{background:#64748b}.bg-slate-900{background:#0f172a}.text-white{color:#fff}
-.rounded-3xl{border-radius:24px}.rounded-2xl{border-radius:16px}.rounded-xl{border-radius:12px}.rounded-md{border-radius:6px}.rounded-full{border-radius:999px}
-.border{border:1px solid}.border-slate-100{border-color:#f1f5f9}.border-slate-200{border-color:#e2e8f0}
-.p-6{padding:24px}.p-4{padding:16px}.p-5{padding:20px}.p-7{padding:28px}.px-4{padding-left:16px;padding-right:16px}.px-3{padding-left:12px;padding-right:12px}.py-2{padding-top:8px;padding-bottom:8px}.py-1\.5{padding-top:6px;padding-bottom:6px}.pt-5{padding-top:20px}.pb-5{padding-bottom:20px}
-.mb-7{margin-bottom:28px}.mb-5{margin-bottom:20px}.mb-3{margin-bottom:12px}.mt-1{margin-top:4px}.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mt-5{margin-top:20px}
-.flex{display:flex}.hidden{display:none!important}.grid{display:grid}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}
-.items-center{align-items:center}.items-end{align-items:flex-end}.justify-between{justify-content:space-between}.justify-end{justify-content:flex-end}.gap-1{gap:4px}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.flex-1{flex:1}.text-left{text-align:left}.text-center{text-align:center}
-.text-xs{font-size:12px;line-height:16px}.text-sm{font-size:14px;line-height:20px}.text-xl{font-size:20px;line-height:28px}.text-2xl{font-size:24px;line-height:32px}.text-3xl{font-size:30px;line-height:36px}
-.font-medium{font-weight:500}.font-semibold{font-weight:600}.tracking-tight{letter-spacing:-.025em}.tracking-wide{letter-spacing:.025em}.tracking-widest{letter-spacing:.1em}.uppercase{text-transform:uppercase}.aspect-square{aspect-ratio:1/1}
-.w-3{width:12px}.h-3{height:12px}.shadow-sm{box-shadow:0 1px 2px rgba(15,23,42,.06)}.overflow-hidden{overflow:hidden}.line-through{text-decoration:line-through}.opacity-30{opacity:.3}
-.hover\:bg-slate-50:hover{background:#f8fafc}.space-y-8>*+*{margin-top:32px}.border-t{border-top:1px solid #f1f5f9}
-.divide-y>*+*{border-top:1px solid #f1f5f9}
-.sm\:p-8{padding:32px}.sm\:p-7{padding:28px}.sm\:flex-row{flex-direction:row}.sm\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-@media(max-width:640px){body{padding:12px 8px}.sm\:p-8{padding:20px}.sm\:p-7{padding:20px}.sm\:flex-row{flex-direction:column}.sm\:grid-cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Weekflow">
-<link rel="manifest" href="./manifest.json">
+<title>Weekflow</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f9fc;color:#101828;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:30px 16px}
+button,input{font:inherit}button{cursor:pointer}.app{max-width:980px;margin:auto;background:#fff;border-radius:28px;padding:28px;min-height:calc(100vh - 60px);box-shadow:0 8px 35px rgba(15,23,42,.05)}
+.auth{display:flex;gap:8px;padding:14px;border:1px solid #e7ebf1;background:#f8fafc;border-radius:18px;margin-bottom:22px}.auth input{flex:1;min-width:0}.input{border:1px solid #dfe5ec;background:#fff;border-radius:12px;padding:10px 12px;outline:none}.input:focus{border-color:#aab4c2;box-shadow:0 0 0 3px #eef1f5}
+.btn{border:1px solid #dfe5ec;background:#fff;border-radius:12px;padding:10px 15px;color:#344054}.btn.dark{background:#111827;color:#fff;border-color:#111827}.btn:hover{background:#f5f7fa}.btn.dark:hover{background:#1f2937}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:42px}.tabs{display:flex;gap:4px;background:#f1f4f8;border-radius:14px;padding:4px}.tab{border:0;background:transparent;border-radius:11px;padding:9px 16px;color:#667085}.tab.active{background:#fff;color:#101828;box-shadow:0 1px 4px rgba(15,23,42,.08)}.brand{font-size:12px;letter-spacing:.18em;color:#c4ccd7}
+h1{font-size:34px;line-height:1.1;margin:5px 0 8px;letter-spacing:-.03em}.eyebrow{font-size:14px;color:#94a3b8}.sub{color:#667085;margin:0}.page{display:none}.page.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:48px 0 38px}.card{border:1px solid #edf0f4;background:#f8fafc;border-radius:18px;padding:18px}.label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#98a2b3}.num{font-size:28px;font-weight:600;margin-top:9px}.muted{color:#98a2b3;font-size:14px}
+.activity{border:1px solid #edf0f4;background:#f8fafc;border-radius:24px;padding:24px}.activity-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.activity h2{margin:0;font-size:20px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.dow{font-size:11px;color:#98a2b3;text-align:center;padding-bottom:3px}.day{aspect-ratio:1;border-radius:8px;background:#edf1f5;display:flex;align-items:center;justify-content:center;font-size:11px;color:#667085;position:relative}.day.l1{background:#cbd5e1;color:#111827}.day.l2{background:#64748b;color:#fff}.day.l3{background:#111827;color:#fff}.day.out{opacity:.3}
+.footerstats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;border-top:1px solid #edf0f4;margin-top:24px;padding-top:22px}.task-list{border:1px solid #edf0f4;border-radius:18px;overflow:hidden;margin-top:20px}.task{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #f0f2f5}.task:last-child{border-bottom:0}.task .text{flex:1;text-align:left;background:none;border:0;padding:0;color:#101828}.task.done .text{text-decoration:line-through;color:#98a2b3}.delete{border:0;background:transparent;color:#98a2b3;font-size:20px}.add{display:flex;gap:8px;margin-top:12px}.add .input:first-child{flex:1}
+.empty{padding:30px;text-align:center;color:#98a2b3}.message{font-size:12px;color:#98a2b3;margin-top:7px}
+@media(max-width:700px){body{padding:8px}.app{padding:18px;border-radius:20px;min-height:calc(100vh - 16px)}.auth{flex-wrap:wrap}.auth input{flex-basis:45%}.stats{grid-template-columns:repeat(2,1fr);margin:34px 0 26px}.footerstats{grid-template-columns:repeat(2,1fr)}.nav{margin-bottom:32px}.brand{display:none}.add{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="auth">
+    <input id="email" class="input" type="email" placeholder="Email">
+    <input id="password" class="input" type="password" placeholder="Password">
+    <button id="signIn" class="btn dark">Sign in</button>
+    <button id="signUp" class="btn">Create account</button>
+    <div id="authMsg" class="message" style="width:100%"></div>
+  </div>
 
-<div class="w-full max-w-4xl mx-auto bg-white text-slate-900 rounded-3xl p-6 sm:p-8">
-  <section class="mb-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-    <div id="authSignedOut" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-      <input id="authEmail" type="email" autocomplete="email" placeholder="Email" class="flex-1 rounded-xl border border-slate-200 px-3 py-2 bg-white text-sm">
-      <input id="authPassword" type="password" autocomplete="current-password" placeholder="Password" class="flex-1 rounded-xl border border-slate-200 px-3 py-2 bg-white text-sm">
-      <button id="signIn" type="button" class="rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-medium">Sign in</button>
-      <button id="signUp" type="button" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium">Create account</button>
+  <nav class="nav">
+    <div class="tabs">
+      <button id="overviewTab" class="tab active">Overview</button>
+      <button id="tasksTab" class="tab">Tasks</button>
     </div>
-    <div id="authSignedIn" class="hidden items-center justify-between gap-3">
-      <div><div class="text-sm font-medium">Synced</div><div id="authUser" class="text-xs text-slate-400 mt-0.5"></div></div>
-      <button id="signOut" type="button" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm">Sign out</button>
-    </div>
-    <div id="authMessage" class="text-xs text-slate-400 mt-2"></div>
-  </section>
-  <nav class="flex items-center justify-between pb-5 mb-7">
-    <div class="flex items-center gap-1 rounded-2xl bg-slate-100 p-1">
-      <button id="navStats" type="button" class="rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm">Overview</button>
-      <button id="navTasks" type="button" class="rounded-xl px-4 py-2 text-sm font-medium text-slate-500">Tasks</button>
-    </div>
-    <div class="text-xs tracking-widest text-slate-300">WEEKFLOW</div>
+    <div class="brand">WEEKFLOW</div>
   </nav>
 
-  <div id="tasksPage" class="hidden">
-  <header class="flex items-center justify-between gap-4">
-    <div>
-      <div id="dateLabel" class="text-sm text-slate-400">Friday, August 14</div>
-      <h1 class="text-3xl font-semibold tracking-tight mt-1">What’s up next?</h1>
-      <p class="text-sm text-slate-500 mt-1">A simple view of your week.</p>
-    </div>
-    <button id="clearDone" type="button" class="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-500 hover:bg-slate-50">Clear done</button>
-  </header>
+  <section id="overview" class="page active">
+    <div class="eyebrow">Your productivity</div>
+    <h1>Overview</h1>
+    <p class="sub">A complete picture of your work.</p>
 
-  <section>
-    <div class="flex items-center justify-between mb-3"><h2 class="font-medium">Tasks</h2><span id="taskCount" class="text-sm text-slate-400"></span></div>
-    <div id="tasks" class="divide-y divide-slate-100 rounded-2xl border border-slate-100 bg-white px-4"></div>
-    <div class="mt-3 flex flex-col sm:flex-row gap-2">
-      <label class="sr-only" for="taskInput">Add task</label>
-      <input id="taskInput" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-base bg-white" placeholder="Add a task…" />
-      <label class="sr-only" for="taskDate">Task date</label>
-      <input id="taskDate" type="date" class="rounded-xl border border-slate-200 px-3 py-2 text-base bg-white" />
-      <button id="addTask" type="button" class="rounded-xl bg-slate-900 text-white px-4 py-2 font-medium">Add</button>
+    <div class="stats">
+      <div class="card"><div class="label">Today</div><div id="today" class="num">0</div><div class="muted">tasks</div></div>
+      <div class="card"><div class="label">This week</div><div id="week" class="num">0</div><div class="muted">tasks</div></div>
+      <div class="card"><div class="label">All time</div><div id="all" class="num">0</div><div class="muted">tasks</div></div>
+      <div class="card"><div class="label">Streak</div><div id="streak" class="num">0</div><div class="muted">days</div></div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-head">
+        <div><h2>Activity</h2><div class="muted">Tasks completed each day</div></div>
+        <div style="display:flex;gap:6px"><button id="prevMonth" class="btn">←</button><button id="thisMonth" class="btn">Today</button><button id="nextMonth" class="btn">→</button></div>
+      </div>
+      <div id="monthTitle" class="muted" style="margin-bottom:12px"></div>
+      <div id="calendar" class="calendar"></div>
+      <div class="muted" style="text-align:right;margin-top:12px">Less&nbsp;&nbsp; · · · &nbsp;&nbsp;More</div>
+    </div>
+
+    <div class="footerstats">
+      <div><div class="label">Completed</div><div id="completed" class="num" style="font-size:20px">0</div></div>
+      <div><div class="label">Remaining</div><div id="remaining" class="num" style="font-size:20px">0</div></div>
+      <div><div class="label">Best day</div><div id="best" class="num" style="font-size:20px">—</div></div>
+      <div><div class="label">Average</div><div id="average" class="num" style="font-size:20px">0</div></div>
     </div>
   </section>
-  </div>
 
-  <div id="statsPage" class="space-y-8">
-    <header class="flex items-end justify-between gap-4">
-      <div><div class="text-sm text-slate-400">Your productivity</div><h1 class="text-3xl font-semibold tracking-tight mt-1">Overview</h1><p class="text-sm text-slate-500 mt-1">A complete picture of your work.</p></div>
-      <div id="ovMonthLabel" class="text-sm text-slate-400"></div>
-    </header>
-
-    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">Today</div><div id="ovToday" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">tasks</div></div>
-      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">This week</div><div id="ovWeek" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">tasks</div></div>
-      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">All time</div><div id="ovAll" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">tasks</div></div>
-      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4"><div class="text-xs uppercase tracking-wide text-slate-400">Streak</div><div id="ovStreak" class="text-2xl font-semibold mt-2">0</div><div class="text-sm text-slate-400">days</div></div>
-    </section>
-
-    <section class="rounded-3xl border border-slate-100 bg-slate-50 p-5 sm:p-7">
-      <div class="flex items-center justify-between mb-5"><div><h2 class="font-medium">Activity</h2><p class="text-sm text-slate-400 mt-1">Tasks completed each day</p></div><div class="flex items-center gap-1"><button id="ovPrev" type="button" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">←</button><button id="ovNow" type="button" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">Today</button><button id="ovNext" type="button" class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm">→</button></div></div>
-      <div id="monthCalendar" class="grid grid-cols-7 gap-1.5"></div>
-      <div class="mt-4 flex items-center justify-end gap-2 text-xs text-slate-400"><span>Less</span><i class="w-3 h-3 rounded-sm bg-slate-100"></i><i class="w-3 h-3 rounded-sm bg-slate-300"></i><i class="w-3 h-3 rounded-sm bg-slate-500"></i><i class="w-3 h-3 rounded-sm bg-slate-900"></i><span>More</span></div>
-    </section>
-
-    <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-100 pt-5">
-      <div><div class="text-xs uppercase tracking-wide text-slate-400">Completed</div><div id="ovCompleted" class="text-xl font-semibold mt-1">0</div></div>
-      <div><div class="text-xs uppercase tracking-wide text-slate-400">Remaining</div><div id="ovRemaining" class="text-xl font-semibold mt-1">0</div></div>
-      <div><div class="text-xs uppercase tracking-wide text-slate-400">Best day</div><div id="ovBest" class="text-xl font-semibold mt-1">—</div></div>
-      <div><div class="text-xs uppercase tracking-wide text-slate-400">Average</div><div id="ovAvg" class="text-xl font-semibold mt-1">0</div></div>
-    </section>
-  </div>
+  <section id="tasksPage" class="page">
+    <div class="eyebrow" id="taskDateLabel"></div>
+    <h1>What’s up next?</h1>
+    <p class="sub">A simple view of your week.</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:38px">
+      <strong>Tasks</strong><button id="clearDone" class="btn">Clear done</button>
+    </div>
+    <div id="taskList" class="task-list"></div>
+    <div class="add">
+      <input id="taskInput" class="input" placeholder="Add a task…">
+      <input id="taskDate" class="input" type="date">
+      <button id="addTask" class="btn dark">Add</button>
+    </div>
+  </section>
 </div>
 
 <script>
-const now=new Date();
-const key=d=>d.toISOString().slice(0,10);
-const monday=d=>{let x=new Date(d);x.setHours(0,0,0,0);let n=x.getDay()||7;x.setDate(x.getDate()-n+1);return x};
-let viewWeek=monday(now);
-const savedTasks=[
- {id:1,text:'Finish landing page',done:true,date:key(now)},
- {id:2,text:'Review pull requests',done:true,date:key(now)},
- {id:3,text:'30 min deep work',done:false,date:key(now)},
- {id:4,text:'Plan next week',done:false,date:key(now)}
-];
-let tasks=savedTasks;
-try{const raw=localStorage.getItem('weekflow_tasks');if(raw)tasks=JSON.parse(raw)}catch(e){}
-let id=Math.max(20,...tasks.map(t=>t.id+1));
-function save(){try{localStorage.setItem('weekflow_tasks',JSON.stringify(tasks))}catch(e){}}
-function weekEnd(){let d=new Date(viewWeek);d.setDate(d.getDate()+7);return d}
-function inWeek(t){let d=new Date(t.date);return d>=viewWeek&&d<weekEnd()}
-function doneWeek(){return tasks.filter(t=>t.done&&inWeek(t)).length}
-function streak(){let s=0,d=new Date(now);d.setHours(0,0,0,0);while(tasks.some(t=>t.done&&t.date===key(d))){s++;d.setDate(d.getDate()-1)}return s}
-function render(){
- document.getElementById('dateLabel').textContent=viewWeek.toLocaleDateString('en',{month:'long',day:'numeric'})+' — '+new Date(viewWeek.getTime()+6*86400000).toLocaleDateString('en',{month:'long',day:'numeric'});
- document.getElementById('taskCount').textContent=tasks.filter(t=>t.done&&t.date===key(now)).length+' completed today';
- const te=document.getElementById('tasks');te.innerHTML='';
- tasks.forEach(t=>{
-  let row=document.createElement('div');row.className='flex items-center gap-3 py-3';
-  row.innerHTML='<span class="form-check"><input class="form-check-input" type="checkbox" '+(t.done?'checked':'')+'></span><button type="button" class="task-edit flex-1 text-left '+(t.done?'line-through text-slate-400':'')+'">'+t.text+'</button><span class="text-sm text-slate-400">'+(t.date===key(now)?'today':t.date)+'</span><button type="button" class="task-delete text-sm text-slate-400 hover:text-slate-700" aria-label="Delete">×</button>';
-  row.querySelector('input').addEventListener('change',e=>{t.done=e.target.checked;if(t.done)t.date=key(now);save();if(currentUser)await cloudUpdate(t);render()});
-  row.querySelector('.task-edit').addEventListener('click',()=>{let v=prompt('Edit task',t.text);if(v!==null&&v.trim()){t.text=v.trim();save();if(currentUser)await cloudUpdate(t);render()}});
-  row.querySelector('.task-delete').addEventListener('click',()=>{tasks=tasks.filter(x=>x.id!==t.id);save();if(currentUser)await cloudDelete(t);render()});
-  te.appendChild(row);
- });
- renderOverview();
-}
-function renderOverview(){
- const wd=tasks.filter(inWeek).filter(t=>t.done).length;
- document.getElementById('ovToday').textContent=tasks.filter(t=>t.done&&t.date===key(now)).length;
- document.getElementById('ovWeek').textContent=wd;
- document.getElementById('ovAll').textContent=tasks.filter(t=>t.done).length;
- document.getElementById('ovStreak').textContent=streak();
- document.getElementById('ovCompleted').textContent=wd;
- document.getElementById('ovRemaining').textContent=Math.max(0,tasks.filter(inWeek).length-wd);
- const month=new Date(viewWeek.getFullYear(),viewWeek.getMonth(),1), first=new Date(month);
- first.setDate(1-((month.getDay()||7)-1));
- document.getElementById('ovMonthLabel').textContent=month.toLocaleDateString('en',{month:'long',year:'numeric'});
- const cal=document.getElementById('monthCalendar');cal.innerHTML='';
- ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(x=>{let h=document.createElement('div');h.className='text-center text-xs text-slate-400 py-1';h.textContent=x;cal.appendChild(h)});
- let best={count:0,date:null};
- for(let i=0;i<42;i++){
-  let d=new Date(first);d.setDate(first.getDate()+i);
-  let c=tasks.filter(t=>t.done&&t.date===key(d)).length;
-  if(c>best.count)best={count:c,date:d};
-  let cell=document.createElement('div');
-  let outside=d.getMonth()!==month.getMonth();
-  let level=c===0?'bg-slate-100':c===1?'bg-slate-300':c===2?'bg-slate-500':'bg-slate-900';
-  cell.className='aspect-square rounded-md flex flex-col items-center justify-center '+(outside?'opacity-30 ':'')+level+' '+(c?'text-white':'text-slate-400');
-  cell.innerHTML='<span class="text-[11px]">'+d.getDate()+'</span>'+(c?'<span class="text-[9px] mt-0.5">'+c+'</span>':'');
-  cal.appendChild(cell)
- }
- document.getElementById('ovBest').textContent=best.date?best.date.toLocaleDateString('en',{weekday:'short'}):'—';
- document.getElementById('ovAvg').textContent=(wd/7).toFixed(1);
-}
-function addTask(){
- let x=document.getElementById('taskInput'),v=x.value.trim(),date=document.getElementById('taskDate').value||key(now);
- if(!v)return;
- tasks.push({id:id++,text:v,done:false,date});
- x.value='';document.getElementById('taskDate').value=key(now);save();render()
-}
-document.getElementById('addTask').addEventListener('click',addTask);
-document.getElementById('taskInput').addEventListener('keydown',e=>{if(e.key==='Enter')addTask()});
-document.getElementById('clearDone').addEventListener('click',()=>{tasks=tasks.filter(t=>!t.done);save();render()});
-document.getElementById('navTasks').addEventListener('click',()=>{document.getElementById('tasksPage').classList.remove('hidden');document.getElementById('statsPage').classList.add('hidden');document.getElementById('navTasks').className='rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm';document.getElementById('navStats').className='rounded-xl px-4 py-2 text-sm font-medium text-slate-500'});
-document.getElementById('navStats').addEventListener('click',()=>{document.getElementById('tasksPage').classList.add('hidden');document.getElementById('statsPage').classList.remove('hidden');document.getElementById('navStats').className='rounded-xl px-4 py-2 text-sm font-medium bg-white text-slate-900 shadow-sm';document.getElementById('navTasks').className='rounded-xl px-4 py-2 text-sm font-medium text-slate-500'});
-document.getElementById('ovPrev').addEventListener('click',()=>{viewWeek=new Date(viewWeek);viewWeek.setMonth(viewWeek.getMonth()-1);render()});
-document.getElementById('ovNext').addEventListener('click',()=>{viewWeek=new Date(viewWeek);viewWeek.setMonth(viewWeek.getMonth()+1);render()});
-document.getElementById('ovNow').addEventListener('click',()=>{viewWeek=monday(now);render()});
-document.getElementById('taskDate').value=key(now);
-document.getElementById('navStats').click();
-render();
+(function(){
+  const $=id=>document.getElementById(id);
+  const pad=n=>String(n).padStart(2,'0');
+  const dateKey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  const today=new Date(); today.setHours(0,0,0,0);
+  let month=new Date(today.getFullYear(),today.getMonth(),1);
+
+  let tasks=[];
+  try{tasks=JSON.parse(localStorage.getItem('weekflow_tasks')||'[]')}catch(e){tasks=[]}
+  if(!Array.isArray(tasks))tasks=[];
+  if(tasks.length===0){
+    tasks=[
+      {id:1,text:'Finish landing page',done:true,date:dateKey(today)},
+      {id:2,text:'Review pull requests',done:true,date:dateKey(today)},
+      {id:3,text:'30 min deep work',done:false,date:dateKey(today)},
+      {id:4,text:'Plan next week',done:false,date:dateKey(today)}
+    ];
+    save();
+  }
+  function save(){localStorage.setItem('weekflow_tasks',JSON.stringify(tasks))}
+  function show(which){
+    $('overview').classList.toggle('active',which==='overview');
+    $('tasksPage').classList.toggle('active',which==='tasks');
+    $('overviewTab').classList.toggle('active',which==='overview');
+    $('tasksTab').classList.toggle('active',which==='tasks');
+  }
+  function weekStart(d){const x=new Date(d);const n=x.getDay()||7;x.setDate(x.getDate()-n+1);x.setHours(0,0,0,0);return x}
+  function render(){
+    const todayKey=dateKey(today);
+    const start=weekStart(today), end=new Date(start);end.setDate(end.getDate()+7);
+    const doneToday=tasks.filter(t=>t.done&&t.date===todayKey).length;
+    const doneWeek=tasks.filter(t=>t.done&&new Date(t.date+'T00:00:00')>=start&&new Date(t.date+'T00:00:00')<end).length;
+    const doneAll=tasks.filter(t=>t.done).length;
+    $('today').textContent=doneToday;$('week').textContent=doneWeek;$('all').textContent=doneAll;
+    let s=0,d=new Date(today);while(tasks.some(t=>t.done&&t.date===dateKey(d))){s++;d.setDate(d.getDate()-1)}$('streak').textContent=s;
+    $('completed').textContent=doneWeek;$('remaining').textContent=Math.max(0,tasks.filter(t=>new Date(t.date+'T00:00:00')>=start&&new Date(t.date+'T00:00:00')<end&&!t.done).length);$('average').textContent=(doneWeek/7).toFixed(1);
+
+    $('taskDateLabel').textContent=today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+    $('taskDate').value=todayKey;
+
+    const list=$('taskList');list.innerHTML='';
+    if(!tasks.length){list.innerHTML='<div class="empty">No tasks yet.</div>'}
+    tasks.forEach(t=>{
+      const row=document.createElement('div');row.className='task'+(t.done?' done':'');
+      const check=document.createElement('input');check.type='checkbox';check.checked=t.done;
+      const edit=document.createElement('button');edit.className='text';edit.textContent=t.text;
+      const del=document.createElement('button');del.className='delete';del.textContent='×';
+      const day=document.createElement('span');day.className='muted';day.textContent=t.date===todayKey?'today':'';
+      row.append(check,edit,day,del);list.appendChild(row);
+      check.onchange=()=>{t.done=check.checked;if(t.done)t.date=todayKey;save();render()};
+      edit.onclick=()=>{const v=prompt('Edit task',t.text);if(v&&v.trim()){t.text=v.trim();save();render()}};
+      del.onclick=()=>{tasks=tasks.filter(x=>x.id!==t.id);save();render()};
+    });
+
+    const first=new Date(month.getFullYear(),month.getMonth(),1), startCal=new Date(first);
+    const offset=(first.getDay()+6)%7;startCal.setDate(first.getDate()-offset);
+    $('monthTitle').textContent=month.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+    const cal=$('calendar');cal.innerHTML='';
+    ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(x=>{const el=document.createElement('div');el.className='dow';el.textContent=x;cal.appendChild(el)});
+    let best=0,bestDate=null;
+    for(let i=0;i<42;i++){
+      const d=new Date(startCal);d.setDate(startCal.getDate()+i);
+      const count=tasks.filter(t=>t.done&&t.date===dateKey(d)).length;
+      if(count>best){best=count;bestDate=d}
+      const el=document.createElement('div');el.className='day'+(d.getMonth()!==month.getMonth()?' out':'')+(count===1?' l1':count===2?' l2':count>=3?' l3':'');
+      el.textContent=d.getDate();el.title=count+' completed';cal.appendChild(el);
+    }
+    $('best').textContent=bestDate?bestDate.toLocaleDateString('en-US',{weekday:'short'}):'—';
+  }
+
+  $('overviewTab').onclick=()=>show('overview');
+  $('tasksTab').onclick=()=>show('tasks');
+  $('addTask').onclick=()=>{
+    const text=$('taskInput').value.trim();if(!text)return;
+    tasks.push({id:Date.now(),text,done:false,date:$('taskDate').value||dateKey(today)});
+    $('taskInput').value='';save();render();
+  };
+  $('taskInput').onkeydown=e=>{if(e.key==='Enter')$('addTask').click()};
+  $('clearDone').onclick=()=>{tasks=tasks.filter(t=>!t.done);save();render()};
+  $('prevMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()-1,1);render()};
+  $('nextMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);render()};
+  $('thisMonth').onclick=()=>{month=new Date(today.getFullYear(),today.getMonth(),1);render()};
+
+  $('signIn').onclick=()=>{$('authMsg').textContent='Cloud login will be connected after the local app is stable.'};
+  $('signUp').onclick=()=>{$('authMsg').textContent='Account creation will be connected after the local app is stable.'};
+
+  render();
+})();
 </script>
+</body>
+</html>
